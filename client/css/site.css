@@ -2,6 +2,14 @@ body {
     padding-top: 50px;
 }
 
+nav {
+  background-color: #1B5E20;
+}
+
+#movie-details{
+  min-height: 300px;
+}
+
 .card-group{
 	margin:20px 0px 0px 10px;
 	margin:auto;

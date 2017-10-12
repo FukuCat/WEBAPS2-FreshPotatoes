@@ -1,7 +1,6 @@
 {
   "name": "freshpotatoes",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
@@ -20,5 +19,7 @@
   "dependencies": {
     "browser-sync": "^2.18.13",
     "express": "^4.16.1"
-  }
+  },
+  "devDependencies": {},
+  "description": ""
 }
