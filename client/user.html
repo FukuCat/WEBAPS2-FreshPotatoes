@@ -1,72 +1,138 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-<link rel="stylesheet" href="css/bootstrap.css">
-<link rel="stylesheet" href="css/bootstrap.min/css">
-<link rel="stylesheet" href="css/site.css">
-<title>Movie Review</title>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Rye" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/site.css">
+  <script src="js/jquery-3.2.1.min.js" charset="utf-8"></script>
+  <script src="js/bootstrap.min.js" charset="utf-8"></script>
+  <title>Fresh Potatoes</title>
 </head>
 <body>
-  						
-	<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-	  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-	  </button>
-	  <a class="navbar-brand" href="#">Movie Review</a>
+  <!-- nav -->
+  <nav class="navbar navbar-toggleable-md fixed-top navbar-inverse">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="index.html">
+    <img src="/img/potato1600.png" width="30" height="30" class="d-inline-block align-top" alt="">
+    Fresh Potatoes
+  </a>
 
-	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-		<ul class="navbar-nav mr-auto">
-		  <li class="nav-item active">
-			<a class="nav-link" href="homepage.html">Home <span class="sr-only">(current)</span></a>
-		  </li>
-		  <li class="nav-item">
-			<a class="nav-link" href="user.html">User</a>
-		  </li>
-		  <li class="nav-item">
-			<a class="nav-link" href="changepassword.html">Change Password</a>
-		  </li>
-		  <li class="nav-item">
-			<a class="nav-link" href="#">Logout</a>
-		  </li>
-		</ul>
-		<form class="form-inline my-2 my-lg-0">
-		  <input class="form-control mr-sm-2" type="text" placeholder="Search">
-		  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-		</form>
-	  </div>
-	</nav>
-	
-	<div class="card text-center">
-	  <div class="card-header">
-		Rating: 5
-	  </div>
-	  <div class="card-body">
-		<h4 class="card-title">Justice League</h4>
-		<p class="card-text">Good watch. Recommended for young adults.</p>
-	  </div>
-	</div>
-	
-	<div class="card text-center">
-	  <div class="card-header">
-		Rating: 5
-	  </div>
-	  <div class="card-body">
-		<h4 class="card-title">Justice League</h4>
-		<p class="card-text">Good watch. Recommended for young adults.</p>
-	  </div>
-	</div>
-	
-	<div class="card text-center">
-	  <div class="card-header">
-		Rating: 5
-	  </div>
-	  <div class="card-body">
-		<h4 class="card-title">Justice League</h4>
-		<p class="card-text">Good watch. Recommended for young adults.</p>
-	  </div>
-	</div>
-		
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="#">New Releases</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Certified Fresh</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    <ul class="navbar-nav ml-auto">
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Account
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#">My Account</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Log-Out</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Register</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Log-In
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+          <form class="form-signin pl-2 pr-2">
+            <label for="inputEmail" class="sr-only">Email address</label>
+            <input type="email" id="inputEmail" class="form-control form-control-sm mb-2" placeholder="Email address" required autofocus>
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="inputPassword" class="form-control form-control-sm mb-2" placeholder="Password" required>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" value="remember-me"> Remember me
+              </label>
+            </div>
+            <button class="btn btn-sm btn-success btn-block" type="submit">Sign in</button>
+          </form>
+        </div>
+      </li>
+    </ul>
+  </div>
+  </nav>
+  <!-- nav end -->
+  <section class="container-fluid">
+    <!-- user details -->
+    <div class="row">
+      <div class="col-md-10 offset-md-1">
+        <div id="movie-details" class="card p-2">
+        <div class="row">
+          <div class="col-md-4">
+            <img src="img/dog.jpg" class="img-fluid" alt="Responsive image">
+          </div>
+          <div class="col-md-6">
+            <h4 class="card-title mb-2">My Account</h4>
+              <table class="table borderless table-sm table-responsive">
+                <tbody>
+                  <tr>
+                  <td>User</td>
+                  <td>Lastname, Firstname M.</td>
+                  </tr>
+                  <tr>
+                  <td>Birthdate</td>
+                  <td>1960-12-12</td>
+                  <tr>
+                  </tr>
+                  <td>Email</td>
+                  <td>username@email.com</td>
+                  </tr>
+                </tbody>
+              </table>
+            <h6 class="card-subtitle mb-2">Bio</h6>
+            <p class="card-text">
+              Lorem ipsum dolor sit amet, pri ut vitae similique deterruisset, te atqui invidunt antiopam has, vix stet equidem ut. Mundi lucilius nec an, sed at veniam ponderum deterruisset. Sint qualisque his at, vix id quaeque equidem mnesarchum, cu vis vocibus appetere efficiendi. Tale affert vivendo te mel, amet zril convenire mea ne.
+            </p>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+    <!-- user details end -->
+    <!-- comment section -->
+    <div class="row">
+        <div id="comments" class="comments col-md-10 offset-md-1 mt-4">
+            <!-- comment -->
+            <div class="comment mb-2 row">
+                <div class="comment-avatar col-md-1 col-sm-2 text-center pr-1">
+                    <a href=""><img class="mx-auto img-fluid" src="img/posters/justice-league.jpg" alt="avatar"></a>
+                </div>
+                <div class="comment-content col-md-11 col-sm-10">
+                    <h6 class="small comment-meta"><a href="movie.html">Justice League</a> Today, 2:38</h6>
+                    <h6 class="text-muted mb-2">Rating: 5</h6>
+                    <div class="comment-body">
+                        <p>Good watch. Recommended for young adults.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- /comment -->
+        </div>
+    </div>
+    <!-- comment section end -->
+  </section>
+  <footer>
+
+  </footer>
 </body>
 </html>

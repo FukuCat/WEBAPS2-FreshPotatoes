@@ -6,8 +6,16 @@ nav {
   background-color: #1B5E20;
 }
 
-#movie-details{
+#movie-details, #user-details{
   min-height: 300px;
+}
+
+#movie-details, #user-details ul{
+  list-style-type: none important!;
+}
+
+.borderless td, .borderless th {
+    border: none;
 }
 
 .card-group{
