@@ -1,6 +1,15 @@
 body {
     padding-top: 50px;
 }
+
+.card-group{
+	margin:20px 0px 0px 10px;
+	margin:auto;
+}
+
+.card{
+	margin:20px 0px 0px 0px;
+}
 /*
 nav div{
   background-color: none;
