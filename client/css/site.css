@@ -26,6 +26,36 @@ nav {
 .card{
 	margin:20px 0px 0px 0px;
 }
+
+.potato-star{
+  width: 20px;
+  height: 20px;
+}
+
+#signup{
+  border-style: inset;
+  margin-left: 30px;
+  margin-top: 10px;
+  margin-right: 40px;
+}
+
+#login{
+  text-align: center;
+  width: 50%;
+  border: 3px solid #e5cc9e;
+  padding: 10px;
+  margin-top: 100px;
+  margin-left: 350px;
+}
+
+.logintext{
+  margin: auto;
+}
+
+
+#success{
+  border: none;
+}
 /*
 nav div{
   background-color: none;
