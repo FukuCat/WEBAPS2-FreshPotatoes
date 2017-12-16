@@ -1,18 +1,27 @@
-const express = require('express');
-const browserSync = require('browser-sync');
-const app = express();
+let express = require("express");
+let router = require("./router.js");
+let bodyParser = require("body-parser");
+let mongoose = require("mongoose");
 
-app.use(express.static('client'));
-//app.use('/styles', express.static('styles'));
-//app.use('/scripts', express.static('scripts'));
+let app = express();
 
-var bs = browserSync.create();
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
-bs.init({
-  proxy: "localhost:4000",
-  files: ["client/**"]
+app.use(express.static("./public"));
+app.use("/api", router);
+
+app.use("*", function(req, res) {
+    res.send("Resource not found (404).");
 });
 
-app.listen(4000, function(){
-  console.log('Server started at port 4000');
+//db init
+mongoose.connect("mongodb://localhost/moviereview", {
+    useMongoClient: true
+});
+
+mongoose.promise = Promise;
+
+app.listen(3000, function() {
+    console.log("Server started at PORT 3000");
 });

@@ -1,25 +1,21 @@
 {
-  "name": "freshpotatoes",
+  "name": "scrum",
   "version": "1.0.0",
-  "main": "app.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/KenjiFuku/WEBAPS2-FreshPotatoes.git"
-  },
   "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/KenjiFuku/WEBAPS2-FreshPotatoes/issues"
-  },
-  "homepage": "https://github.com/KenjiFuku/WEBAPS2-FreshPotatoes#readme",
+  "license": "MIT",
   "dependencies": {
-    "browser-sync": "^2.18.13",
-    "express": "^4.16.1"
-  },
-  "devDependencies": {},
-  "description": ""
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "jsonwebtoken": "^8.1.0",
+    "mongoose": "^4.13.6",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  }
 }
