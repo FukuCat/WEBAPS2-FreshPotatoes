@@ -9,7 +9,7 @@ exports.create = function(req, res) {
         .then((hash) => {
             bcrypt.compare(login.password, hash)
                 .then((success) => {
-                    if(login.password.localeCompare(hash) == 0) {
+                    if(success) {
                         var payload = {
                             name: login.userId
                         }

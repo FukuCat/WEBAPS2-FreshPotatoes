@@ -1,10 +1,10 @@
-const Meeting = require("../models/meeting.server.model.js");
+const Review = require("../models/review.server.model.js");
 
 exports.getAll = function(req, res) {
 
-    Meeting.findAll()
-        .then((meetings) => {
-            return res.status(200).json(meetings);
+    Review.findAll()
+        .then((reviews) => {
+            return res.status(200).json(reviews);
         })
         .catch((error) => {
             console.log(error);
@@ -14,20 +14,20 @@ exports.getAll = function(req, res) {
 
 exports.getById = function(req, res) {
 
-    Meeting.findById(req.params.meetingId, function(err, meeting) {
+    Review.findById(req.params.reviewId, function(err, review) {
         if(err) {
             console.log(err);
             return res.status(500).send();
         } else {
-            return res.status(200).send(meeting);
+            return res.status(200).send(review);
         }
     });
 }
 
 exports.create = function(req, res) {
-    let meeting = new Meeting(req.body);
+    let review = new Review(req.body);
 
-    meeting.save((err, meeting) => {
+    review.save((err, review) => {
         if(err) {
             console.log(err);
             return res.status(500).send();
@@ -38,9 +38,9 @@ exports.create = function(req, res) {
 }
 
 exports.delete = function(req, res) {
-    console.log(req.params.meetingId);
+    console.log(req.params.reviewId);
 
-    Meeting.findByIdAndRemove(req.params.meetingId, function(err, data) {
+    Review.findByIdAndRemove(req.params.reviewId, function(err, data) {
         if(!err) {
             res.status(204).send();
         } else {
@@ -50,14 +50,14 @@ exports.delete = function(req, res) {
 }
 
 exports.update = function(req, res) {
-    console.log(req.params.meetingId);
-    let meeting = {
-        yesterday: req.body.yesterday,
-        today: req.body.today,
-        impediment: req.body.impediment
+    console.log(req.params.reviewId);
+    let review = {
+        title: req.body.title,
+        description: req.body.description,
+        comment: req.body.comment
     }
 
-    Meeting.findByIdAndUpdate(req.params.meetingId, meeting, function(err, data) {
+    Review.findByIdAndUpdate(req.params.reviewId, review, function(err, data) {
         if(!err) {
             res.status(204).send();
         } else {

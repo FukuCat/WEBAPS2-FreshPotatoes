@@ -1,13 +1,14 @@
-class ScrumBox extends React.Component {
+class ReviewBox extends React.Component {
 
     constructor() {
         super();
 
         this.state = {
-            meetings: [],
+            reviews: [],
             editMode: false,
             logout: false,
-            auth: true
+            auth: true,
+            message: ""
         }
     }
 
@@ -15,13 +16,13 @@ class ScrumBox extends React.Component {
 
         $.ajax({
             type: "GET",
-            url: "/api/meeting",
+            url: "/api/review",
             headers: {
                 "Authorization": sessionStorage.getItem("token")
             }
-        }).done((meetings, status, xhr) => {
-            this.setState({ meetings });
-            console.log(meetings);
+        }).done((reviews, status, xhr) => {
+            this.setState({ reviews });
+            console.log(reviews);
         }).fail((xhr) => {
             console.log(xhr.status);
 
@@ -31,7 +32,6 @@ class ScrumBox extends React.Component {
                 });
             }
         });
-
         if(!sessionStorage.getItem("token")) {
             this.setState({
                 auth: false
@@ -55,7 +55,7 @@ class ScrumBox extends React.Component {
 
         if(this.state.editMode) {
             return (
-                <Redirect to="/meeting/new" />
+                <Redirect to="/review/new" />
             );
         }
 
@@ -72,10 +72,11 @@ class ScrumBox extends React.Component {
 
                 </div>
             </div>
+
         <div className="row">
             <div className="col-sm">
-                <div className="card">
-                    <MeetingList meetings={this.state.meetings} />
+                <div>
+                    <ReviewList reviews={this.state.reviews} />
                 </div>
             </div>
         </div>
@@ -101,31 +102,31 @@ class ScrumBox extends React.Component {
     }
 }
 
-class MeetingList extends React.Component {
+class ReviewList extends React.Component {
 
     render() {
-        let meetings = this._getMeetings();
+        let reviews = this._getReviews();
 
         return(
-            meetings.map((meeting) =>
-                    <MeetingCard
-                        key={meeting._id}
-                        meetingId={meeting._id}
-                        name={meeting.name}
-                        yesterday={meeting.yesterday}
-                        today={meeting.today}
-                        impediment={meeting.impediment}
-                        createdOn={meeting.createdOn} />
+            reviews.map((review) =>
+                    <ReviewCard
+                        key={review._id}
+                        reviewId={review._id}
+                        user={review.user}
+                        title={review.title}
+                        description={review.description}
+                        comment={review.comment}
+                        createdOn={review.createdOn} />
                 )
         );
     }
 
-    _getMeetings() {
-        return this.props.meetings;
+    _getReviews() {
+        return this.props.reviews;
     }
 }
 
-class MeetingCard extends React.Component {
+class ReviewCard extends React.Component {
 
     constructor() {
         super();
@@ -140,7 +141,7 @@ class MeetingCard extends React.Component {
 
         if(this.state.edit != "") {
             return (
-                <Redirect to={`/meetings/${this.state.edit}`} />
+                <Redirect to={`/reviews/${this.state.edit}`} />
             );
         }
 
@@ -152,46 +153,74 @@ class MeetingCard extends React.Component {
 
         return(
                     <div className="card">
+                    <div className="alert alert-danger invisible" role="alert">
+                          {this.state.message}
+                    </div>
                         <div className="card-body">
                             <h6 className="card-subtitle mb-2 text-muted">Movie Title</h6>
-                            <h4 className="card-title">{this.props.yesterday}</h4>
+                            <h4 className="card-title">{this.props.title}</h4>
                             <h6 className="card-subtitle mb-2 text-muted">Description</h6>
-                            <p className="card-text">{this.props.today}</p>
+                            <p className="card-text">{this.props.description}</p>
                             <h6 className="card-subtitle mb-2 text-muted">Review</h6>
-                            <p className="card-text">{this.props.impediment}</p>
+                            <p className="card-text">{this.props.comment}</p>
+                            <h6 className="card-subtitle mb-2 text-muted">Author</h6>
+                            <p className="card-text">{this.props.user}</p>
                             <h6 className="card-subtitle mb-2 text-muted">Created On</h6>
                             <p className="card-text">{this.props.createdOn}</p>
-                            <ManageButton meetingId={this.props.meetingId} action={this._handleEdit.bind(this)} text="Edit" />
-                            <ManageButton meetingId={this.props.meetingId} action={this._handleDelete.bind(this)} text="Delete" />
+                            <ManageButton reviewId={this.props.reviewId} action={this._handleEdit.bind(this)} text="Edit" />
+                            <ManageButton reviewId={this.props.reviewId} action={this._handleDelete.bind(this)} text="Delete" />
                         </div>
                     </div>
+
         );
     }
 
-    _handleEdit(meetingId) {
-        console.log(meetingId);
+    _handleEdit(reviewId) {
+        console.log(reviewId);
+        if(this.props.user == sessionStorage.getItem("username")){
+          this.setState({
+              edit: reviewId
+          });
+        }
+        else{
+          this.setState({
+              message: "Created by a different user! Cannot edit or delete!"
+          });
 
-        this.setState({
-            edit: meetingId
-        });
+          let errorAlert = $(".alert");
+          if(errorAlert.hasClass("invisible")) {
+              errorAlert.removeClass("invisible");
+          }
+        }
     }
 
-    _handleDelete(meetingId) {
-        console.log(meetingId);
+    _handleDelete(reviewId) {
+        console.log(reviewId);
+        if(this.props.user == sessionStorage.getItem("username")){
+          $.ajax({
+              type: "DELETE",
+              url: `/api/review/${reviewId}`,
+              headers: {
+                  "Authorization": sessionStorage.getItem("token")
+              }
+          }).done((res, status, xhr) => {
+              this.setState({
+                  refresh: true
+              });
+          }).fail((xhr) => {
+              console.log(xhr.status);
+          });
+        }
+        else{
+          this.setState({
+              message: "Created by a different user! Cannot edit or delete!"
+          });
 
-        $.ajax({
-            type: "DELETE",
-            url: `/api/meeting/${meetingId}`,
-            headers: {
-                "Authorization": sessionStorage.getItem("token")
-            }
-        }).done((res, status, xhr) => {
-            this.setState({
-                refresh: true
-            });
-        }).fail((xhr) => {
-            console.log(xhr.status);
-        });
+          let errorAlert = $(".alert");
+          if(errorAlert.hasClass("invisible")) {
+              errorAlert.removeClass("invisible");
+          }
+        }
     }
 
 }
@@ -210,7 +239,7 @@ class ManageButton extends React.Component {
 
     _handleEdit(e) {
         e.preventDefault();
-        this.props.action(this.props.meetingId);
+        this.props.action(this.props.reviewId);
     }
 
 }

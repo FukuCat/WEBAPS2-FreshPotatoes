@@ -5,7 +5,8 @@ class LoginBox extends React.Component {
 
         this.state ={
             message: "",
-            redirect: false
+            redirect: false,
+            createNew: false
         }
     }
 
@@ -14,6 +15,12 @@ class LoginBox extends React.Component {
             return (
                 <Redirect to="/" />
             );
+        }
+
+        if(this.state.createNew){
+          return (
+              <Redirect to="/register/new" />
+          );
         }
 
         return (
@@ -33,14 +40,23 @@ class LoginBox extends React.Component {
                             <label htmlFor="password">Password</label>
                             <input type="password" ref={(input) => this._password = input} className="form-control" id="password" placeholder="Password" />
                         </div>
-                        <button type="submit" className="btn btn-primary">Submit</button>
+                        <button type="submit" className="btn btn-primary">Login</button>
             </form>
+            <p></p>
+            <button type="button" onClick={this._createAccount.bind(this)} className="btn btn-primary">Create New Account</button>
                 </div>
                 <div className="col-sm"></div>
             </div>
         </div>
 
         );
+    }
+
+    _createAccount(e){
+      e.preventDefault();
+      this.setState({
+          createNew: true
+      });
     }
 
     _handleSubmit(e) {
@@ -58,6 +74,7 @@ class LoginBox extends React.Component {
             data: session
         }).done((res, status, xhr) => {
             sessionStorage.setItem("token", xhr.getResponseHeader("Authorization"));
+            sessionStorage.setItem("username", this._name.value);
             this.setState({ redirect: true });
         }).fail((xhr) => {
             if(xhr.status == 401) {

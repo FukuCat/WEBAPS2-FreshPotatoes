@@ -16,11 +16,11 @@ class AppBox extends React.Component {
                 <a className="navbar-brand">Movie Review</a>
             </nav>
             <div id="content">
-                <Route exact path="/meeting/new" component={MeetingNewBox} />
-                <Route exact path="/homepage/new" component={HomepageBox} />
+                <Route exact path="/review/new" component={ReviewNewBox} />
                 <Route exact path="/session/new" component={LoginBox} />
-                <Route exact path="/meetings/:meetingId" component={MeetingEditBox} />
-                <Route exact path="/" component={ScrumBox} />
+                <Route exact path="/reviews/:reviewId" component={ReviewEditBox} />
+                <Route exact path="/register/new" component={RegisterBox} />
+                <Route exact path="/" component={ReviewBox} />
             </div>
             </div>
       </Router>
@@ -29,9 +29,8 @@ class AppBox extends React.Component {
     }
 }
 const Login = () => <LoginBox />
-const Home = () => <ScrumBox />
-const MeetingNew = () => <MeetingNewBox />
-const MeetingEdit = () => <MeetingEditBox />
-const HomepageBox = () => <HomePageBox />
+const Home = () => <ReviewBox />
+const ReviewNew = () => <ReviewNewBox />
+const ReviewEdit = () => <ReviewEditBox />
 
 ReactDOM.render(<AppBox />, document.getElementById("root"));
