@@ -6,6 +6,7 @@ class ScrumBox extends React.Component {
         this.state = {
             meetings: [],
             editMode: false,
+            logout: false,
             auth: true
         }
     }
@@ -45,6 +46,13 @@ class ScrumBox extends React.Component {
             );
         }
 
+        if(this.state.logout) {
+            sessionStorage.removeItem("token");
+            return (
+                <Redirect to="/session/new" />
+            );
+        }
+
         if(this.state.editMode) {
             return (
                 <Redirect to="/meeting/new" />
@@ -55,21 +63,33 @@ class ScrumBox extends React.Component {
             <div className="container-fluid">
             <div className="row">
                 <div className="col-sm">
-                <button type="button" onClick={this._handleClick.bind(this)} className="btn btn-primary float-right">
-                    +Add New Movie
+                <button type="button" onClick={this._logout.bind(this)} className="btn btn-primary btn-lg float-right">
+                    Logout
+                </button>
+                <button type="button" onClick={this._handleClick.bind(this)} className="btn btn-primary btn-lg">
+                    +Add New Movie Review
                 </button>
 
                 </div>
             </div>
         <div className="row">
             <div className="col-sm">
-                <div className="card-deck">
+                <div className="card">
                     <MeetingList meetings={this.state.meetings} />
                 </div>
             </div>
         </div>
 </div>
         );
+    }
+
+    _logout(e){
+      e.preventDefault();
+
+      this.setState({
+          logout: true
+      });
+
     }
 
     _handleClick(e) {
@@ -94,7 +114,8 @@ class MeetingList extends React.Component {
                         name={meeting.name}
                         yesterday={meeting.yesterday}
                         today={meeting.today}
-                        impediment={meeting.impediment} />
+                        impediment={meeting.impediment}
+                        createdOn={meeting.createdOn} />
                 )
         );
     }
@@ -136,8 +157,10 @@ class MeetingCard extends React.Component {
                             <h4 className="card-title">{this.props.yesterday}</h4>
                             <h6 className="card-subtitle mb-2 text-muted">Description</h6>
                             <p className="card-text">{this.props.today}</p>
-                            <h6 className="card-subtitle mb-2 text-muted">Year</h6>
+                            <h6 className="card-subtitle mb-2 text-muted">Review</h6>
                             <p className="card-text">{this.props.impediment}</p>
+                            <h6 className="card-subtitle mb-2 text-muted">Created On</h6>
+                            <p className="card-text">{this.props.createdOn}</p>
                             <ManageButton meetingId={this.props.meetingId} action={this._handleEdit.bind(this)} text="Edit" />
                             <ManageButton meetingId={this.props.meetingId} action={this._handleDelete.bind(this)} text="Delete" />
                         </div>

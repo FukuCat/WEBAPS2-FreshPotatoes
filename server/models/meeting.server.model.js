@@ -26,6 +26,6 @@ meetingSchema.statics = {
     }
 };
 
-var Meeting = mongoose.model("Meeting", meetingSchema);
+var Meeting = mongoose.model("Movies", meetingSchema);
 
 module.exports = Meeting;

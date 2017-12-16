@@ -52,7 +52,7 @@ class MeetingEditBox extends React.Component {
                                         <textarea onChange={this._handleTodayChange.bind(this)} value={this.state.meeting.today} ref={(textarea) => this._today = textarea} className="form-control" id="today" rows="3"></textarea>
                                     </div>
                                     <div className="form-group">
-                                        <label htmlFor="impediment">Year</label>
+                                        <label htmlFor="impediment">Review</label>
                                         <textarea onChange={this._handleImpedimentChange.bind(this)} value={this.state.meeting.impediment} ref={(textarea) => this._impediment = textarea} className="form-control" id="impediment" rows="3"></textarea>
                                     </div>
                                 </div>
@@ -220,7 +220,7 @@ class MeetingNewBox extends React.Component {
                                         <textarea ref={(textarea) => this._today = textarea} className="form-control" id="today" rows="3"></textarea>
                                     </div>
                                     <div className="form-group">
-                                        <label htmlFor="today">Year</label>
+                                        <label htmlFor="today">Review</label>
                                         <textarea ref={(textarea) => this._impediment = textarea} className="form-control" id="impediment" rows="3"></textarea>
                                     </div>
                                 </div>
